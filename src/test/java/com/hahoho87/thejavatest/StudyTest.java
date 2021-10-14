@@ -7,6 +7,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class StudyTest {
 
     @Test
+    @Tag("fast")
     void createTest() {
         Study study = new Study();
         System.out.println("create1");
@@ -14,6 +15,7 @@ class StudyTest {
     }
 
     @Test
+    @Tag("slow")
     void createTest2() {
         System.out.println("create2");
     }
