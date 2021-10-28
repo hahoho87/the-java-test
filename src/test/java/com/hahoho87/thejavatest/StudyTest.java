@@ -1,6 +1,7 @@
 package com.hahoho87.thejavatest;
 
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.extension.ParameterContext;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.aggregator.AggregateWith;
@@ -15,6 +16,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@ExtendWith(FindSlowTestExtension.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class StudyTest {
 
@@ -103,6 +105,13 @@ class StudyTest {
     void argumentsAccessorTestWithCustomAggregator(@AggregateWith(StudyAggregator.class) Study study) {
         System.out.println("study = " + study);
     }
+
+    @DisplayName("slow extension 테스트")
+    @SlowTest
+    void slowExtensionTest() throws InterruptedException {
+        Thread.sleep(2000L);
+    }
+
 
     static class StudyAggregator implements ArgumentsAggregator {
         @Override
