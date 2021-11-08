@@ -1,10 +1,10 @@
-package com.hahoho87.thejavatest;
+package com.hahoho87.thejavatest.domain;
 
 public class Study {
 
     private int limit;
 
-
+    private Member owner;
     private String name;
 
     public int getLimit() {
@@ -32,5 +32,13 @@ public class Study {
 
     public Study(int limit) {
         this.limit = limit;
+    }
+
+    public Member getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Member owner) {
+        this.owner = owner;
     }
 }

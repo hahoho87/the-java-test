@@ -1,5 +1,6 @@
 package com.hahoho87.thejavatest;
 
+import com.hahoho87.thejavatest.domain.Study;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.extension.ParameterContext;
