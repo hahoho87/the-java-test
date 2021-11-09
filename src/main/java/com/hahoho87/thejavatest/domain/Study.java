@@ -1,5 +1,8 @@
 package com.hahoho87.thejavatest.domain;
 
+import lombok.ToString;
+
+@ToString
 public class Study {
 
     private int limit;
@@ -19,13 +22,6 @@ public class Study {
         this.name = name;
     }
 
-    @Override
-    public String toString() {
-        return "Study{" +
-                "limit=" + limit +
-                ", name='" + name + '\'' +
-                '}';
-    }
 
     public Study() {
     }
