@@ -14,6 +14,8 @@ import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.BDDMockito.given;
+import static org.mockito.BDDMockito.then;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -96,4 +98,26 @@ class StudyServiceTest {
         verifyNoMoreInteractions(memberService);
     }
 
+    @Test
+    void applyBddStyleTest() {
+        Member member = new Member();
+        member.setMemberId(1L);
+        member.setName("testMember");
+
+        Study study = new Study(10, "Test");
+
+        given(memberService.findById(1L)).willReturn(Optional.of(member));
+        given(studyRepository.save(study)).willReturn(study);
+
+        StudyService studyService = new StudyService(studyRepository, memberService);
+        studyService.createStudy(1L, study);
+
+        then(memberService).should(times(1)).notify(study);
+        then(memberService).should(never()).validate(any());
+
+        InOrder inOrder = inOrder(memberService);
+        inOrder.verify(memberService).notify(study);
+        inOrder.verify(memberService).notify(member);
+        then(memberService).shouldHaveNoMoreInteractions();
+    }
 }
