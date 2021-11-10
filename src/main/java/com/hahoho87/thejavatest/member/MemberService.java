@@ -1,6 +1,7 @@
 package com.hahoho87.thejavatest.member;
 
 import com.hahoho87.thejavatest.domain.Member;
+import com.hahoho87.thejavatest.domain.Study;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -16,5 +17,16 @@ public class MemberService {
 
     public Optional<Member> findById(Long memberId) {
         return memberRepository.findById(memberId);
+    }
+
+    public void notify(Study study) {
+    }
+
+    public void validate(Study study) {
+
+    }
+
+    public void notify(Member member) {
+
     }
 }
