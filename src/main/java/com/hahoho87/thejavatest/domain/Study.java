@@ -1,6 +1,9 @@
 package com.hahoho87.thejavatest.domain;
 
+import com.hahoho87.thejavatest.study.StudyStatus;
 import lombok.ToString;
+
+import java.time.LocalDateTime;
 
 @ToString
 public class Study {
@@ -9,6 +12,9 @@ public class Study {
 
     private Member owner;
     private String name;
+
+    private LocalDateTime openDateTime;
+    private StudyStatus status;
 
     public int getLimit() {
         return limit;
@@ -36,5 +42,18 @@ public class Study {
 
     public void setOwner(Member owner) {
         this.owner = owner;
+    }
+
+    public LocalDateTime getOpenDateTime() {
+        return openDateTime;
+    }
+
+    public StudyStatus getStatus() {
+        return status;
+    }
+
+    public void open() {
+        this.openDateTime = LocalDateTime.now();
+        this.status = StudyStatus.OPENED;
     }
 }
